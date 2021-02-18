@@ -20,7 +20,7 @@ function Activities() {
     return (
     <ListGroup >
     {activitiesList.map(activity => (
-    <ListGroup.Item key={activity.id} >
+    <ListGroup.Item variant="info" key={activity.id} >
       {activity.name}
     </ListGroup.Item>))}
   </ListGroup>
