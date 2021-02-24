@@ -44,7 +44,7 @@ function NavBar() {
         </Nav.Item>
         <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-            Signed in as: <a href="#login">`{user}</a>
+            Signed in as: <a href="#login">{user.displayName || 'Guest'}</a>
             </Navbar.Text>
         </Navbar.Collapse>
         </>

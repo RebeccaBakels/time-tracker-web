@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react' 
 import Spinner from 'react-bootstrap/Spinner'
 import ListGroup from 'react-bootstrap/ListGroup'
+import Button from 'react-bootstrap/Button'
 
 function Activities() {
     const [activitiesList, setActivitiesList] = useState(null)
@@ -22,6 +23,17 @@ function Activities() {
     {activitiesList.map(activity => (
     <ListGroup.Item variant="info" key={activity.id} >
       {activity.name}
+      <div>
+    <Button variant="success" size="sm">
+      Start
+    </Button>{' '}
+    <Button variant="danger" size="sm">
+      Stop
+    </Button>
+    <Button variant="info" size="sm">
+      Reset
+    </Button>
+  </div>
     </ListGroup.Item>))}
   </ListGroup>
     )
