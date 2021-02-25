@@ -19,21 +19,22 @@ function Activities() {
         )
     }
     return (
-    <ListGroup >
+    <ListGroup className='activities-titles' >
     {activitiesList.map(activity => (
     <ListGroup.Item variant="info" key={activity.id} >
       {activity.name}
-      <div>
-    <Button variant="success" size="sm">
+      <br/>
+      <br/>
+    <Button  variant="success" size="md">
       Start
     </Button>{' '}
-    <Button variant="danger" size="sm">
+    <Button variant="danger" size="md">
       Stop
     </Button>
-    <Button variant="info" size="sm">
+    <Button variant="info" size="md">
       Reset
     </Button>
-  </div>
+
     </ListGroup.Item>))}
   </ListGroup>
     )

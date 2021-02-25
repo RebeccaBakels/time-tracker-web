@@ -39,8 +39,16 @@
 body {
   background-image: url('./assets/corgi.png');
   background-position: center center;
- 
   background-size: cover;
-  
-  
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.col  {
+  max-width: 300;
+  background: rgba(244, 244, 5244, 0.75);
+}
+.activities-titles {
+  font-size: 1.5rem;
 }
