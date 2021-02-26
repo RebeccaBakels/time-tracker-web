@@ -1,69 +1,81 @@
-import React, {useState, useEffect} from 'react' 
-import Spinner from 'react-bootstrap/Spinner'
-import ListGroup from 'react-bootstrap/ListGroup'
-import Button from 'react-bootstrap/Button'
+import React, { useState, useEffect } from "react";
+import Spinner from "react-bootstrap/Spinner";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 function Activities() {
-    const [activitiesList, setActivitiesList] = useState(null)
-    //const [log, setLog] = useState([])
-    //const [selectedActivity, setSelectedActivity] = useState('')
+  const [activitiesList, setActivitiesList] = useState(null);
+  const [startTime, setStartTime] = useState([]);
+  const [selectedActivity, setSelectedActivity] = useState("");
 
-    useEffect(() => {
-        fetch('https://tracker-rb.web.app/activities')
-        .then(res => res.json())
-        .then(data => setActivitiesList(data))
-        .catch(err => alert('error'))
-    },[])
+  useEffect(() => {
+    fetch("https://tracker-rb.web.app/activities")
+      .then((res) => res.json())
+      .then((data) => setActivitiesList(data))
+      .catch((err) => alert("error"));
+  }, []);
 
-    //setLog({startTime: Date.now(), endTime: null, duration: 0})
+  function startActivity(activityId) {
+    console.log(activityId)
+    setStartTime(Date.now());
+    setSelectedActivity(activityId);
+  }
+  useEffect(() => {
+    console.log(startTime, selectedActivity);
+  }, [startTime, selectedActivity]);
 
-    function startActivity() {
-      //put the onClick on the button
-      //once clicked it logs the Date.now() in startTime
-      //also needs to grab the activity.id
-      //setInterval
-      //do I need a fetch??
-    }
-    function endActivity() {
-      //put onClick on Stop button
-      //once clicked it logs Date.now() in endTime 
-      //then startTime-endTime = duration
-      //stores it in the database
-      //displays totalDuration next to activity name
+  function endActivity() {
+    const endTime = Date.now();
+    const duration = (endTime - startTime) / 60000;
+    console.log(duration);
+    fetch(`https://tracker-rb.web.app/activities/${selectedActivity}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ startTime, endTime, duration }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setActivitiesList(data);
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log("error updating item:", err);
+      });
+  }
 
-    }
-
-
-    if(!activitiesList) {
-        return (
-
-      <Spinner animation="border" role="status">
-       <span className="sr-only">Loading...</span>
-      </Spinner>
-
-        )
-    }
+  if (!activitiesList) {
     return (
-    <ListGroup className='activities-titles' >
-    {activitiesList.map(activity => (
-    <ListGroup.Item variant="info" key={activity.id} >
-      {activity.name}
-      <br/>
-      <br/>
-    <Button  variant="success" size="md" onCLick={startActivity()} >
-      Start
-    </Button>{' '}
-    <Button variant="danger" size="md" onClick={endActivity()}>
-      Stop
-    </Button>
-    {/* <Button variant="info" size="md">
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
+  }
+  return (
+    <ListGroup className="activities-titles">
+      {activitiesList.map((activity) => (
+        <ListGroup.Item variant="info" key={activity.id}>
+          {activity.name}
+          <br />
+          <br />
+          <Button
+            variant="success"
+            size="md"
+            onClick={() => startActivity(activity.id)}
+          >
+            Start
+          </Button>{" "}
+          <Button variant="danger" size="md" onClick={() => endActivity()}>
+            Stop
+          </Button>
+          {/* <Button variant="info" size="md">
       Reset
     </Button> */}
-
-    </ListGroup.Item>))}
-  </ListGroup>
-    )
-
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
+  );
 }
 
-export default Activities 
+export default Activities;

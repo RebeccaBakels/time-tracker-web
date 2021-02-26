@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useContext} from 'react'
 import Activities from './Activities'
 import {UserContext} from '../App'
 import { Container, Row, Col } from 'react-bootstrap'

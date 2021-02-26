@@ -56,7 +56,11 @@ const Login = () => {
         <Form
         noValidate validated={validated} onSubmit={handleSubmit}
         >
+        <br/>
+        <br/>
         <Form.Group as={Row} controlId="formHorizontalEmail">
+       
+
           <Form.Label column sm={2}>
             Email
           </Form.Label>
@@ -106,6 +110,7 @@ const Login = () => {
         >
         Login with Google        
         </Button>
+
           </Col>
         </Form.Group>
       </Form>

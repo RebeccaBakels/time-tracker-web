@@ -56,6 +56,8 @@ const Signup = () => {
         <Form
         noValidate validated={validated} onSubmit={handleSubmit}
         >
+        <br/>
+        <br/>
         <Form.Group as={Row} controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             Email
@@ -94,7 +96,7 @@ const Signup = () => {
       
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit" loading = {loading}>Login</Button>
+            <Button type="submit" loading = {loading}>Sign Up</Button>
           </Col>
         </Form.Group>
         <Form.Group as={Row}>
@@ -104,7 +106,7 @@ const Signup = () => {
           loading={loading}
           onClick={() => loginWithGoogle()}
         >
-        Login with Google        
+        Sign Up with Google        
         </Button>
           </Col>
         </Form.Group>

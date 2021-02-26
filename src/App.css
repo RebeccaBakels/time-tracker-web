@@ -1,7 +1,11 @@
 .App {
   text-align: center;
-}
+  background: rgba(0, 187, 212, 0.65);
+    margin: auto;
+    padding-bottom: 5%;
+    max-width: 800px;
 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -40,9 +44,7 @@ body {
   background-image: url('./assets/corgi.png');
   background-position: center center;
   background-size: cover;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1;
+
 }
 
 .col  {
@@ -51,4 +53,7 @@ body {
 }
 .activities-titles {
   font-size: 1.5rem;
+}
+.navbar{
+width: 100%;
 }
