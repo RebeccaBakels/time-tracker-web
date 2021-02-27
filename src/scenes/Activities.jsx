@@ -56,9 +56,8 @@ function Activities() {
     <ListGroup className="activities-titles">
       {activitiesList.map((activity) => (
         <ListGroup.Item variant="info" key={activity.id}>
-          {activity.name}
-          <br />
-          <br />
+          <h2>{activity.name}</h2>
+        
           <Button
             variant="success"
             size="md"
@@ -69,9 +68,7 @@ function Activities() {
           <Button variant="danger" size="md" onClick={() => endActivity()}>
             Stop
           </Button>
-          {/* <Button variant="info" size="md">
-      Reset
-    </Button> */}
+          <p>Total Time Spent: {Math.round(activity.totalDuration)} minutes</p>
         </ListGroup.Item>
       ))}
     </ListGroup>
