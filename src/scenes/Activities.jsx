@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import ListGroup from "react-bootstrap/ListGroup";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 
 function Activities() {
@@ -53,7 +55,20 @@ function Activities() {
     );
   }
   return (
-    <ListGroup className="activities-titles">
+    <>
+    <div className="activities-titles">
+  <InputGroup className="mb-3">
+    <FormControl
+      placeholder="Add New Activity"
+      aria-label="Add New Activity"
+      aria-describedby="basic-addon2"
+    />
+    <InputGroup.Append>
+      <Button variant="secondary">Submit</Button>
+    </InputGroup.Append>
+  </InputGroup>
+    <ListGroup >
+      <h2>Your Activities:</h2>
       {activitiesList.map((activity) => (
         <ListGroup.Item variant="info" key={activity.id}>
           <h2>{activity.name}</h2>
@@ -68,10 +83,16 @@ function Activities() {
           <Button variant="danger" size="md" onClick={() => endActivity()}>
             Stop
           </Button>
+          <br/>
+          <Button variant="danger" size="sm" id='delete-button'>
+            Delete
+          </Button>
           <p>Total Time Spent: {Math.round(activity.totalDuration)} minutes</p>
         </ListGroup.Item>
       ))}
     </ListGroup>
+    </div>
+    </>
   );
 }
 

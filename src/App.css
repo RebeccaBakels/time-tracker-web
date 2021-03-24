@@ -57,4 +57,9 @@ body {
 .navbar{
 width: 100%;
 }
+#delete-button {
+  color: #3a3a3a;
+  border-color: #dc3545;
+  background-color: transparent
+}
 

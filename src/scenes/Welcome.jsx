@@ -16,7 +16,6 @@ function Welcome() {
     <Row>
         <Col >
         <h1>Hello {greeting}!</h1>
-        <h2>Your Activities:</h2>
         </Col>
     </Row>
     </Container>
