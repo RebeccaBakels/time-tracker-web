@@ -18,7 +18,7 @@ function Activities() {
   }, []);
 
   function startActivity(activityId) {
-    console.log(activityId)
+    console.log(activityId);
     setStartTime(Date.now());
     setSelectedActivity(activityId);
   }
@@ -40,7 +40,7 @@ function Activities() {
       .then((res) => res.json())
       .then((data) => {
         setActivitiesList(data);
-        console.log(data)
+        console.log(data);
       })
       .catch((err) => {
         console.log("error updating item:", err);
@@ -56,42 +56,43 @@ function Activities() {
   }
   return (
     <>
-    <div className="activities-titles">
-  <InputGroup className="mb-3">
-    <FormControl
-      placeholder="Add New Activity"
-      aria-label="Add New Activity"
-      aria-describedby="basic-addon2"
-    />
-    <InputGroup.Append>
-      <Button variant="secondary">Submit</Button>
-    </InputGroup.Append>
-  </InputGroup>
-    <ListGroup >
-      <h2>Your Activities:</h2>
-      {activitiesList.map((activity) => (
-        <ListGroup.Item variant="info" key={activity.id}>
-          <h2>{activity.name}</h2>
-        
-          <Button
-            variant="success"
-            size="md"
-            onClick={() => startActivity(activity.id)}
-          >
-            Start
-          </Button>{" "}
-          <Button variant="danger" size="md" onClick={() => endActivity()}>
-            Stop
-          </Button>
-          <br/>
-          <Button variant="danger" size="sm" id='delete-button'>
-            Delete
-          </Button>
-          <p>Total Time Spent: {Math.round(activity.totalDuration)} minutes</p>
-        </ListGroup.Item>
-      ))}
-    </ListGroup>
-    </div>
+      <div className="activities-titles">
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="Add New Activity"
+            aria-label="Add New Activity"
+            aria-describedby="basic-addon2"
+          />
+          <InputGroup.Append>
+            <Button variant="secondary">Submit</Button>
+          </InputGroup.Append>
+        </InputGroup>
+        <ListGroup>
+          <h2>Your Activities:</h2>
+          {activitiesList.map((activity) => (
+            <ListGroup.Item variant="info" key={activity.id}>
+              <h2>{activity.name}</h2>
+              <Button
+                variant="success"
+                size="md"
+                onClick={() => startActivity(activity.id)}
+              >
+                Start
+              </Button>{" "}
+              <Button variant="danger" size="md" onClick={() => endActivity()}>
+                Stop
+              </Button>
+              <br />
+              <Button variant="danger" size="sm" id="delete-button">
+                Delete
+              </Button>
+              <p>
+                Total Time Spent: {Math.round(activity.totalDuration)} minutes
+              </p>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </div>
     </>
   );
 }

@@ -1,10 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Tracker() {
-
-    return(
-        <h1>Tracker</h1>
-    )
+  return <h1>Tracker</h1>;
 }
 
-export default Tracker
+export default Tracker;

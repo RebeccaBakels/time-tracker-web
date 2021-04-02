@@ -1,10 +1,9 @@
 .App {
   text-align: center;
   background: rgba(0, 187, 212, 0.65);
-    margin: auto;
-    padding-bottom: 5%;
-    max-width: 800px;
-
+  margin: auto;
+  padding-bottom: 5%;
+  max-width: 800px;
 }
 .App-logo {
   height: 40vmin;
@@ -41,25 +40,23 @@
   }
 }
 body {
-  background-image: url('./assets/corgi.png');
+  background-image: url("./assets/corgi.png");
   background-position: center center;
   background-size: cover;
-
 }
 
-.col  {
+.col {
   max-width: 300;
   background: rgba(244, 244, 5244, 0.75);
 }
 .activities-titles {
   font-size: 1.5rem;
 }
-.navbar{
-width: 100%;
+.navbar {
+  width: 100%;
 }
 #delete-button {
   color: #3a3a3a;
   border-color: #dc3545;
-  background-color: transparent
+  background-color: transparent;
 }
-
