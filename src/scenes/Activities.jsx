@@ -57,7 +57,7 @@ function Activities() {
   return (
     <>
       <div className="activities-titles">
-        <InputGroup className="mb-3">
+        {/* <InputGroup className="mb-3">
           <FormControl
             placeholder="Add New Activity"
             aria-label="Add New Activity"
@@ -66,9 +66,9 @@ function Activities() {
           <InputGroup.Append>
             <Button variant="secondary">Submit</Button>
           </InputGroup.Append>
-        </InputGroup>
+        </InputGroup> */}
         <ListGroup>
-          <h2>Your Activities:</h2>
+          {/* <h2>Your Activities:</h2> */}
           {activitiesList.map((activity) => (
             <ListGroup.Item variant="info" key={activity.id}>
               <h2>{activity.name}</h2>
