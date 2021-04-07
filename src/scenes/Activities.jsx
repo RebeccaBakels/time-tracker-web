@@ -9,7 +9,7 @@ function Activities() {
   const [activitiesList, setActivitiesList] = useState(null);
   const [startTime, setStartTime] = useState([]);
   const [selectedActivity, setSelectedActivity] = useState("");
-  const [newActivity, setNewActivity] = useState(null);
+  const [name, setName] = useState(null);
 
   useEffect(() => {
     fetch("https://tracker-rb.web.app/activities")
@@ -51,13 +51,28 @@ function Activities() {
   function postActivity() {
     fetch("https://tracker-rb.web.app/activities", {
       method: "POST",
-      body: JSON.stringify({ newActivity }),
+      body: JSON.stringify({ name, userId: 1 }),
       headers: { "Content-type": "application/json" },
     })
+    .then((res) => res.json())
       .then((data) => {
         setActivitiesList(data);
+        setName('')
       })
       .catch((err) => console.log("ERROR", err));
+  }
+
+  function deleteActivity(activityId) {
+    fetch(`https://tracker-rb.web.app/activities/${activityId}`, {
+      method: "DELETE",
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      setActivitiesList(data)
+    })
+    .catch((err) => {
+      console.log("error deleting activity:", err);
+    });
   }
 
   if (!activitiesList) {
@@ -75,8 +90,8 @@ function Activities() {
             placeholder="Add New Activity"
             aria-label="Add New Activity"
             aria-describedby="basic-addon2"
-            onChange={(e) => setNewActivity(e.target.value)}
-            value={newActivity}
+            onChange={(e) => setName(e.target.value)}
+            value={name}
           />
           <InputGroup.Append>
             <Button variant="secondary" onClick={postActivity}>
@@ -99,7 +114,7 @@ function Activities() {
                 Stop
               </Button>
               <br />
-              <Button variant="danger" size="sm" id="delete-button">
+              <Button variant="danger" size="sm" id="delete-button" onClick={() => deleteActivity(activity.id)}>
                 Delete
               </Button>
               <p>
