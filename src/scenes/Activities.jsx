@@ -9,6 +9,7 @@ function Activities() {
   const [activitiesList, setActivitiesList] = useState(null);
   const [startTime, setStartTime] = useState([]);
   const [selectedActivity, setSelectedActivity] = useState("");
+  const [newActivity, setNewActivity] = useState(null);
 
   useEffect(() => {
     fetch("https://tracker-rb.web.app/activities")
@@ -47,6 +48,18 @@ function Activities() {
       });
   }
 
+  function postActivity() {
+    fetch("https://tracker-rb.web.app/activities", {
+      method: "POST",
+      body: JSON.stringify({ newActivity }),
+      headers: { "Content-type": "application/json" },
+    })
+      .then((data) => {
+        setActivitiesList(data);
+      })
+      .catch((err) => console.log("ERROR", err));
+  }
+
   if (!activitiesList) {
     return (
       <Spinner animation="border" role="status">
@@ -57,18 +70,21 @@ function Activities() {
   return (
     <>
       <div className="activities-titles">
-        <InputGroup style={{paddingBottom: "0vh"}}>
+        <InputGroup style={{ paddingBottom: "0vh" }}>
           <FormControl
             placeholder="Add New Activity"
             aria-label="Add New Activity"
             aria-describedby="basic-addon2"
+            onChange={(e) => setNewActivity(e.target.value)}
+            value={newActivity}
           />
           <InputGroup.Append>
-            <Button variant="secondary">Submit</Button>
+            <Button variant="secondary" onClick={postActivity}>
+              Submit
+            </Button>
           </InputGroup.Append>
         </InputGroup>
         <ListGroup>
-          {/* <h2>Your Activities:</h2> */}
           {activitiesList.map((activity) => (
             <ListGroup.Item variant="info" key={activity.id}>
               <h2>{activity.name}</h2>
